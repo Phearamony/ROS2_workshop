@@ -1,0 +1,17 @@
+import rclpy
+from rclpy.node import Node
+from std_msgs.msg import Int32
+
+class CounterSubscriber(Node):
+    def __init__(self):
+        super().__init__('counter_subscriber')
+        # Subscribe to '/counter', call self.on_msg when data arrives
+        self.sub = self.create_subscription(Int32, '/counter', self.on_msg, 10)
+
+    def on_msg(self, msg):
+        self.get_logger().info(f'Received: {msg.data}')
+
+def main(args=None):
+    rclpy.init(args=args)
+    rclpy.spin(CounterSubscriber())
+    rclpy.shutdown()
