@@ -1,0 +1,13 @@
+material SimpleCourse/Ground
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture course.png
+      }
+    }
+  }
+}
