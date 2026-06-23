@@ -1,0 +1,121 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="classroom_world">
+
+    <gravity>0 0 -9.8</gravity> <!-- Gravity force in simulation (Earth-like) -->
+
+    <light name="sun" type="directional">   <!-- Create directional light (sun) -->
+          <cast_shadows>true</cast_shadows>   <!-- Enable shadow casting -->
+          <pose>0 0 10 0 0 0</pose>           <!-- Position + orientation -->
+          <diffuse>0.8 0.8 0.8 1</diffuse>    <!-- Main light color (white light) -->
+          <specular>0.2 0.2 0.2 1</specular>  <!-- Reflection intensity (shininess) -->
+          <direction>-0.5 0.1 -0.9</direction> <!-- Direction of incoming light -->
+    </light>
+
+    <model name="ground">
+      <static>true</static> <!-- Ground does not move under physics -->
+      <pose>0 0 0 0 0 0</pose> <!-- Position at origin -->
+      <link name="ground_link"> <!-- Physical body of ground -->
+        <collision name="ground_collision"> <!-- Collision shape (physics) -->
+          <geometry>
+            <box>
+              <size>20 20 0.1</size> <!-- Large flat surface -->
+            </box>
+          </geometry>
+        </collision>
+        <visual name="ground_visual"> <!-- Visual representation -->
+          <geometry>
+            <box>
+              <size>20 20 0.1</size> <!-- Same shape as collision -->
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Back wall -->
+    <model name="back_wall">
+      <static>true</static> <!-- Wall is fixed in space -->
+      <pose>0 -3 0.5 0 0 0</pose> <!-- Position at back side -->
+      <link name="link">
+        <collision name="collision"> <!-- Physics collision -->
+          <geometry><box><size>6 0.2 1</size></box></geometry> <!-- Thin vertical wall -->
+        </collision>
+        <visual name="visual"> <!-- Visible wall -->
+          <geometry><box><size>6 0.2 1</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Front wall -->
+    <model name="front_wall">
+      <static>true</static>
+      <pose>0 3 0.5 0 0 0</pose> <!-- Front boundary -->
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>6 0.2 1</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>6 0.2 1</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Left wall -->
+    <model name="left_wall">
+      <static>true</static>
+      <pose>-3 0 0.5 0 0 0</pose> <!-- Left boundary -->
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.2 6 1</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>0.2 6 1</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Right wall -->
+    <model name="right_wall">
+      <static>true</static>
+      <pose>3 0 0.5 0 0 0</pose> <!-- Right boundary -->
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.2 6 1</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>0.2 6 1</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Inner obstacle 1 -->
+    <model name="inner_wall_1">
+      <static>true</static>
+      <pose>-1 0.8 0.5 0 0 0</pose> <!-- Internal obstacle position -->
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>2.0 0.2 1</size></box></geometry> <!-- Thin barrier -->
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>2.0 0.2 1</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Inner obstacle 2 -->
+    <model name="inner_wall_2">
+      <static>true</static>
+      <pose>1 -0.8 0.5 0 0 0</pose> <!-- Second internal obstacle -->
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>2.0 0.2 1</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>2.0 0.2 1</size></box></geometry>
+        </visual>
+      </link>
+    </model>
+
+  </world>
+</sdf>
